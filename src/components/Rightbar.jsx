@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core";
-import Navbar from "./components/Navbar";
+
 const useStyles = makeStyles((theme) => ({}));
-function App() {
+function Rightbar() {
   const classes = useStyles();
   return (
     <div>
-      <Navbar />
+      <div></div>
     </div>
   );
 }
