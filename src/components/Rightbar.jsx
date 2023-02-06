@@ -16,20 +16,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginBottom: theme.spacing(3),
     cursor: "pointer",
-    color: "red",
+  },
+  container: {
+    paddingTop: theme.spacing(10),
+    position: "sticky",
+    top: 0,
+    height: "100vh",
+    color: "#555",
     [theme.breakpoints.down("xs")]: {
       backgroundColor: theme.palette.primary.main,
       color: "white",
     },
-  },
-  container: {
-    paddingTop: theme.spacing(10),
-    height: "100vh",
-
     [theme.breakpoints.up("sm")]: {
       borderLeft: "1px solid #eee",
     },
-    backgroundColor: "gray[50]",
   },
   icon: {
     [theme.breakpoints.up("sm")]: {
