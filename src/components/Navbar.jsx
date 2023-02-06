@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   inputSearch: {
     color: "white",
     marginRight: theme.spacing(1),
+    width: "100%",
   },
   badge: {
     marginRight: theme.spacing(2),
@@ -84,7 +85,10 @@ function Navbar() {
           </Typography>
           <div className={classes.searchBox}>
             <Search />
-            <InputBase className="inputSearch" placeholder="جستوجو کنید..." />
+            <InputBase
+              className={classes.inputSearch}
+              placeholder="جستوجو کنید..."
+            />
             <Cancel
               onClick={() => setOpenSearch(false)}
               className={classes.cancelIcon}

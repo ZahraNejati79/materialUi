@@ -5,9 +5,9 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(10),
   },
 }));
-function Leftbar() {
+function Feed() {
   const classes = useStyles();
   return <Container className={classes.conteiner}>Container</Container>;
 }
 
-export default Leftbar;
+export default Feed;
