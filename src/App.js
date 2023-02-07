@@ -3,6 +3,7 @@ import Rightbar from "./components/Rightbar";
 import Feed from "./components/Feed";
 import Leftbar from "./components/Leftbar";
 import Navbar from "./components/Navbar";
+import Add from "./components/Add";
 const useStyles = makeStyles((theme) => ({
   leftBar: {
     [theme.breakpoints.down("xs")]: {
@@ -26,6 +27,7 @@ function App() {
           <Leftbar />
         </Grid>
       </Grid>
+      <Add />
     </div>
   );
 }
