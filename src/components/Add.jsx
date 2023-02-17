@@ -11,9 +11,12 @@ import {
   FormControlLabel,
   Radio,
   Button,
+  Snackbar,
 } from "@material-ui/core";
 import { Add as AddIcon } from "@material-ui/icons";
 import { useState } from "react";
+import MuiAlert from "@material-ui/lab/Alert";
+
 const useStyles = makeStyles((theme) => ({
   radio: {
     "&$checked": {
@@ -58,12 +61,25 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 10,
   },
 }));
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function Add() {
   const [openModal, setOpenModal] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
   const [value, setValue] = useState("");
   const classes = useStyles();
   const changeHandler = (e) => {
     setValue(e.target.value);
+  };
+  const closeHandler = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenAlert(false);
   };
   return (
     <>
@@ -160,7 +176,11 @@ function Add() {
               </RadioGroup>
             </FormControl>
             <div className={classes.formButton}>
-              <Button variant="outlined" color="primary">
+              <Button
+                onClick={() => setOpenAlert(true)}
+                variant="outlined"
+                color="primary"
+              >
                 ارسال
               </Button>
               <Button
@@ -174,6 +194,16 @@ function Add() {
           </form>
         </Container>
       </Modal>
+      <Snackbar
+        open={openAlert}
+        autoHideDuration={6000}
+        onClose={closeHandler}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert onClose={closeHandler} severity="success">
+          پست شما با موفقیت ارسال شد :)
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -78,10 +78,10 @@ function Navbar() {
       <AppBar>
         <Toolbar className={classes.appBar}>
           <Typography variant="h6" className={classes.logoLg}>
-            وبلاگ تاپلرن
+            وبلاگ نویسا
           </Typography>
           <Typography variant="h6" className={classes.logoSm}>
-            تاپلرن
+            نویسا
           </Typography>
           <div className={classes.searchBox}>
             <Search />
