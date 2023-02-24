@@ -16,6 +16,8 @@ import {
 import { Add as AddIcon } from "@material-ui/icons";
 import { useState } from "react";
 import MuiAlert from "@material-ui/lab/Alert";
+import { useDispatch } from "react-redux";
+import { addPost } from "../redux/Posts/postsAction";
 
 const useStyles = makeStyles((theme) => ({
   radio: {
@@ -69,10 +71,17 @@ function Alert(props) {
 function Add() {
   const [openModal, setOpenModal] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
-  const [value, setValue] = useState("");
+
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [postData, setPostData] = useState({
+    title: "",
+    caption: "",
+    access: "",
+  });
+
   const changeHandler = (e) => {
-    setValue(e.target.value);
+    setPostData({ ...postData, [e.target.name]: e.target.value });
   };
   const closeHandler = (event, reason) => {
     if (reason === "clickaway") {
@@ -80,6 +89,17 @@ function Add() {
     }
 
     setOpenAlert(false);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setOpenAlert(true);
+    setPostData({
+      title: "",
+      caption: "",
+      access: "",
+    });
+    dispatch(addPost(postData));
   };
   return (
     <>
@@ -95,11 +115,14 @@ function Add() {
       </Tooltip>
       <Modal onClose={() => setOpenModal(false)} open={openModal}>
         <Container className={classes.modalContainer}>
-          <form className={classes.form}>
+          <form onSubmit={submitHandler} className={classes.form}>
             <TextField
               id="outlined-basic"
               label="عنوان پست"
               variant="outlined"
+              name="title"
+              value={postData.title}
+              onChange={changeHandler}
             />
             <TextField
               className={classes.textArea}
@@ -109,6 +132,9 @@ function Add() {
               rows={10}
               defaultValue=""
               variant="outlined"
+              name="caption"
+              value={postData.caption}
+              onChange={changeHandler}
             />
             <FormControl
               className={{
@@ -121,7 +147,7 @@ function Add() {
               <RadioGroup
                 aria-label="access"
                 name="access"
-                value={value}
+                value={postData.access}
                 onChange={changeHandler}
               >
                 <FormControlLabel
@@ -176,11 +202,7 @@ function Add() {
               </RadioGroup>
             </FormControl>
             <div className={classes.formButton}>
-              <Button
-                onClick={() => setOpenAlert(true)}
-                variant="outlined"
-                color="primary"
-              >
+              <Button type="submit" variant="outlined" color="primary">
                 ارسال
               </Button>
               <Button

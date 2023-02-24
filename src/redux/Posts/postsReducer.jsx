@@ -4,9 +4,11 @@ const initialState = {
   posts: [],
 };
 const postsReducre = (state = initialState, action) => {
-  switch (state.action) {
+  switch (action.type) {
     case ADD_POST: {
-      console.log("add post");
+      const updatedPost = [...state.posts];
+      updatedPost.push(action.payload);
+      return { ...state, posts: updatedPost };
     }
     case REMOVE_POST: {
       console.log("add post");
