@@ -1,4 +1,5 @@
 import { makeStyles, Container } from "@material-ui/core";
+import { useSelector } from "react-redux";
 import Post from "./Post";
 
 const useStyles = makeStyles((theme) => ({
@@ -8,9 +9,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Feed() {
   const classes = useStyles();
+  const posts = useSelector((state) => state.postInformation.posts);
   return (
     <Container className={classes.conteiner}>
-      <Post />
+      {posts.map((post) => (
+        <Post post={post} />
+      ))}
     </Container>
   );
 }

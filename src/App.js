@@ -6,6 +6,9 @@ import Navbar from "./components/Navbar";
 import Add from "./components/Add";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import Layout from "./layout/Layout";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 const useStyles = makeStyles((theme) => ({
   leftBar: {
     [theme.breakpoints.down("xs")]: {
@@ -18,19 +21,11 @@ function App() {
   return (
     <div>
       <Provider store={store}>
-        <Navbar />
-        <Grid container>
-          <Grid item sm={2} xs={2}>
-            <Rightbar />
-          </Grid>
-          <Grid item sm={7} xs={10}>
-            <Feed />
-          </Grid>
-          <Grid item sm={3} className={classes.leftBar}>
-            <Leftbar />
-          </Grid>
-        </Grid>
-        <Add />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </BrowserRouter>
       </Provider>
     </div>
   );

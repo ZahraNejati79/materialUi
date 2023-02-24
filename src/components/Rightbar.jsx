@@ -9,6 +9,7 @@ import {
   Storefront,
   TabletMac,
 } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -51,7 +52,7 @@ function Rightbar() {
       <div className={classes.item}>
         <Home className={classes.icon} />
         <Typography className={classes.text} variant="h8">
-          خانه
+          <Link to="/"> خانه</Link>
         </Typography>
       </div>
       <div className={classes.item}>
